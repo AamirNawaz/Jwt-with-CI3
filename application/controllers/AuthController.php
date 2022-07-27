@@ -5,6 +5,7 @@ class AuthController extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
+		error_reporting(0);
 		$this->load->model('AuthModel');
 		$this->load->helper('verifyAuthToken');
 
@@ -63,6 +64,7 @@ class AuthController extends CI_Controller {
 
 
 	public function getUsers(){
+		
 	$headerToken = $this->input->get_request_header('Authorization');
 	$splitToken = explode(" ", $headerToken);
 	$token =  $splitToken[1];
@@ -75,8 +77,6 @@ class AuthController extends CI_Controller {
 			}
 				
 		}
-
-		//catch exception
 		catch(Exception $e) {
 		// echo 'Message: ' .$e->getMessage();
 			$error = array(
